@@ -10,6 +10,7 @@ use KeyHelpAPI\Admins\Admins;
 use KeyHelpAPI\Clients\Clients;
 use KeyHelpAPI\HostingPlans\HostingPlans;
 use KeyHelpAPI\Login\Login;
+use KeyHelpAPI\Server\Server;
 use Psr\Http\Message\ResponseInterface;
 use KeyHelpAPI\Accounts\Accounts;
 use KeyHelpAPI\Configuration\Configuration;
@@ -27,6 +28,7 @@ class KeyHelpAPI
     private $clientsHandler;
     private $hostingPlansHandler;
     private $loginHandler;
+    private $serverHandler;
 
     /**
      * KeyHelpAPI constructor.
@@ -226,6 +228,15 @@ class KeyHelpAPI
     {
         if (!$this->loginHandler) $this->loginHandler = new Login($this);
         return $this->loginHandler;
+    }
+
+    /**
+     * @return Server
+     */
+    public function server(): Server
+    {
+        if (!$this->serverHandler) $this->serverHandler = new Server($this);
+        return $this->serverHandler;
     }
 
 }
